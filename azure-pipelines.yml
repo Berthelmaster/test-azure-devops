@@ -39,4 +39,5 @@ steps:
   inputs:
     PathtoPublish: '$(build.artifactStagingDirectory)'
     ArtifactName: '$(artifactName)'
-  condition: succeededOrFailed()
+  # Apply this condition for pull requests to be validated on the given build pipeline, but not to generate a release artifact
+  condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
