@@ -39,4 +39,4 @@ steps:
   inputs:
     PathtoPublish: '$(build.artifactStagingDirectory)'
     ArtifactName: '$(artifactName)'
-  condition: succeededOrFailed()
+  condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
